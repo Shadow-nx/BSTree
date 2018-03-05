@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <iomanip>
-#include "BSTree.h"
+#include "bstree.hpp"
 
 using namespace std;
 using namespace BSTree;
