@@ -38,7 +38,7 @@ Tree::~Tree() {
   Node *current;
   while (head != nullptr) {
     current = head;
-    while (current->right != nullptr && current->left != nullptr) {
+    while (current->right != nullptr || current->left != nullptr) {
       if (current->right != nullptr) {
         current = current->right;
       } else if (current->left != nullptr) {
