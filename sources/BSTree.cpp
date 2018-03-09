@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "BSTree.h"
+#include "BSTree.hpp"
 
 using namespace std;
 using namespace BSTree;
