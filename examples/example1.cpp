@@ -37,31 +37,33 @@ int main(int argc, char *argv[]) {
 
   check_numbers(numbers_array, argc, argv);
   if (numbers_array.size() > 0) {
-    tree->fill_tree(numbers_array);
+    for (int i = 0; i < numbers_array.size(); i++)
+      tree->fill_tree(numbers_array[i]);
   }
-      int choice = 0;
-    while (true) {
-      print_menu();
-      cin >> choice;
-      switch (choice) {
-        case 1:
-          break;
-        case 2:
-          break;
-        case 3:
-          break;
-        case 4:
-          break;
-        case 5:
-          break;
-        case 6:
-          break;
-        case 7:
-          break;
-        case 8:
-          return 0;
-      }
+
+  int choice = 0;
+  while (true) {
+    print_menu();
+    cin >> choice;
+    switch (choice) {
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      case 4:
+        break;
+      case 5:
+        break;
+      case 6:
+        break;
+      case 7:
+        break;
+      case 8:
+        return 0;
     }
+  }
 
   return 0;
 }
