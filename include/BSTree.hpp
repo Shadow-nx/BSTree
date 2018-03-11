@@ -1,7 +1,4 @@
 namespace BSTree {
-#include <vector>  
-using namespace std;
-
 struct Node {
   int data;
   Node *left;
@@ -9,10 +6,11 @@ struct Node {
   Node *prev;
 };
 class Tree {
-  Node *head;
  public:
+  Node *head;
   Tree();
-  auto fill_tree(vector<int> mass)-> void;
+  auto fill_tree(int mass) -> void;
+  auto delete_tree(Node *&node) -> void;
   ~Tree();
 };
 }
