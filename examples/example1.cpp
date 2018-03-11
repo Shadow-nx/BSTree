@@ -16,7 +16,7 @@ void check_numbers(vector<int>& numbers_array, int argc, char* argv[]) {
 			}
 		}
 		if (test == false) {
-			numbers_array.insert(numbers_array.end(), atoi(argv[i]));
+			numbers_array.push_back(atoi(argv[i]));
 		}
 	}
 }
