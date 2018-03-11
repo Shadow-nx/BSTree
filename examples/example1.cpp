@@ -8,9 +8,9 @@ using namespace BSTree;
 
 void check_numbers(vector<int>& numbers_array, int argc, char* argv[]) {
 	bool test = false;
-	for (int i = 1; i < argc; i++) {
+	for (unsigned int i = 1; i < argc; i++) {
 		test = false;
-		for (int j = 0; j < numbers_array.size(); j++) {
+		for (unsigned int j = 0; j < numbers_array.size(); j++) {
 			if (atoi(argv[i]) == numbers_array[j]) {
 				test = true;
 			}
