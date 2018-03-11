@@ -6,7 +6,7 @@ using namespace std;
 using namespace BSTree;
 
 
-void check_numbers(vector<int> &numbers_array, int argc, char *argv[]) {
+void check_numbers(vector<int>& numbers_array, int argc, char* argv[]) {
 	bool test = false;
 	for (int i = 1; i < argc; i++) {
 		test = false;
@@ -32,9 +32,9 @@ void print_menu() {
 }
 
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
 	vector<int> numbers_array;
-	Tree *tree = new Tree;
+	Tree* tree = new Tree;
 
 	check_numbers(numbers_array, argc, argv);
 	if (numbers_array.size() > 0) {
