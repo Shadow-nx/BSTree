@@ -8,9 +8,9 @@ Tree::Tree() {
 	root = nullptr;
 }
 auto Tree::insert(int mass) -> void {
-	Node *curr;
+	Node* curr;
 	curr = root;
-	Node *node = new Node{mass, nullptr, nullptr, nullptr};
+	Node* node = new Node{mass, nullptr, nullptr, nullptr};
 	if (root == nullptr) {
 		root = node;
 		return;
@@ -33,7 +33,7 @@ auto Tree::insert(int mass) -> void {
 		}
 	}
 }
-auto Tree::delete_tree(Node *&node) -> void {
+auto Tree::delete_tree(Node*& node) -> void {
 	if(node!=nullptr) {
 		delete_tree(node->left);
 		delete_tree(node->right);
