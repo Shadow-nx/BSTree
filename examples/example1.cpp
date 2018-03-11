@@ -34,7 +34,7 @@ void print_menu() {
 
 int main(int argc, char* argv[]) {
 	vector<int> numbers_array;
-	Tree* tree = new Tree;
+	Tree* tree;
 
 	check_numbers(numbers_array, argc, argv);
 	if (numbers_array.size() > 0) {
