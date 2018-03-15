@@ -7,10 +7,21 @@ using namespace std;
 Tree::Tree() {
 	root = nullptr;
 }
+auto Tree::show_tree(Node* root,int stage)->void {
+	if(root->left!=nullptr)
+		show_tree(root->left,stage+1);
+	if(root!=this->root) {
+		cout.width(stage*4);
+		cout<<"--";
+	}
+	cout<<"("<< root->data <<")"<< endl;
+	if(root->right!=nullptr)
+		show_tree(root->right,stage+1);
+}
 auto Tree::insert(int mass) -> void {
-	Node* curr;
+	Node *curr;
 	curr = root;
-	Node* node = new Node{mass, nullptr, nullptr, nullptr};
+	Node *node = new Node{mass, nullptr, nullptr, nullptr};
 	if (root == nullptr) {
 		root = node;
 		return;
@@ -33,7 +44,7 @@ auto Tree::insert(int mass) -> void {
 		}
 	}
 }
-auto Tree::delete_tree(Node*& node) -> void {
+auto Tree::delete_tree(Node *&node) -> void {
 	if(node!=nullptr) {
 		delete_tree(node->left);
 		delete_tree(node->right);
