@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
 
 	check_numbers(numbers_array, argc, argv);
 	if (numbers_array.size() > 0) {
-		for(unsigned int i=0; i<numbers_array.size(); i++)
+		for(unsigned int i = 0; i < numbers_array.size(); i++)
 			tree.insert(numbers_array[i]);
 	}
 
@@ -48,6 +48,10 @@ int main(int argc, char* argv[]) {
 		cin >> choice;
 		switch (choice) {
 			case 1:
+				if (tree.getRoot() != nullptr)
+					tree.show_tree(tree.getRoot(),1);
+				else
+					cout << "Tree is empty" << endl;
 				break;
 			case 2:
 				break;
@@ -68,10 +72,3 @@ int main(int argc, char* argv[]) {
 
 	return 0;
 }
-;
-;
-;
-;
-;
-;
-;
