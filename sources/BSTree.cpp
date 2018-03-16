@@ -7,15 +7,18 @@ using namespace std;
 Tree::Tree() {
 	root = nullptr;
 }
+Node* Tree::getRoot(){
+	return root;
+}
 auto Tree::show_tree(Node* root,int stage)->void {
-	if(root->left!=nullptr)
-		show_tree(root->left,stage+1);
-	if(root!=this->root) {
+	if(root->left != nullptr)
+		show_tree(root->left, stage + 1);
+	if(root != this->root) {
 		cout.width(stage*4);
-		cout<<"--";
+		cout << "--";
 	}
-	cout<<"("<< root->data <<")"<< endl;
-	if(root->right!=nullptr)
+	cout << "(" << root->data << ")" << endl;
+	if(root->right != nullptr)
 		show_tree(root->right,stage+1);
 }
 auto Tree::insert(int mass) -> void {
