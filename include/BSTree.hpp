@@ -11,9 +11,9 @@ namespace BSTree {
 			auto delete_tree(Node *&node) ->void;
 		public:
 			Tree();
-			auto getRoot()->Node*;
+			auto getRoot()->Node*&;
 			auto show_tree(Node* root,int stage)->void;
-			auto insert(int value)-> bool;
+			auto insert(Node*& root,int value)-> bool;
 			~Tree();
 	};
 }
