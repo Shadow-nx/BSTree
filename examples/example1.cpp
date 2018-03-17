@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
 	check_numbers(numbers_array, argc, argv);
 	if (numbers_array.size() > 0) {
 		for(unsigned int i = 0; i < numbers_array.size(); i++)
-			tree.insert(numbers_array[i]);
+			tree.insert(tree.getRoot(),numbers_array[i]);
 	}
 
 	int choice = 0;
