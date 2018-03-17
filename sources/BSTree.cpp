@@ -7,7 +7,7 @@ using namespace std;
 Tree::Tree() {
 	root = nullptr;
 }
-Node* Tree::getRoot() {
+Node*& Tree::getRoot() {
 	return root;
 }
 auto Tree::show_tree(Node* root,int stage)->void {
@@ -21,7 +21,7 @@ auto Tree::show_tree(Node* root,int stage)->void {
 	if(root->right!=nullptr)
 		show_tree(root->right,stage+1);
 }
-auto Tree::insert(int value) -> bool {
+auto Tree::insert(Node*& root,int value) -> bool {
 	if (root == nullptr) {
 		root = new Node{value, nullptr, nullptr};
 	}
