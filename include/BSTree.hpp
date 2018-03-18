@@ -11,10 +11,10 @@ namespace BSTree {
 			auto delete_tree(Node *&node) ->void;
 		public:
 			Tree();
-			auto getRoot()->Node*&;
-		        auto empty()->bool;
+			auto empty()->void;
+			auto add_to_tree(int value)->bool;
 			auto show_tree(Node* root,int stage)->void;
-			auto insert(Node*& root,int value)-> bool;
+			auto insert(Node*& root,Node*& parent,int value)-> Node*;
 			~Tree();
 	};
 }
