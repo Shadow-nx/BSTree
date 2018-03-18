@@ -6,52 +6,51 @@ using namespace std;
 using namespace BSTree;
 
 
-void check_numbers(vector<int>& numbers_array, int argc, char* argv[]) {
-	bool test = false;
-	for (unsigned int i = 1; i < argc; i++) {
-		test = false;
-		for (unsigned int j = 0; j < numbers_array.size(); j++) {
-			if (atoi(argv[i]) == numbers_array[j]) {
-				test = true;
-			}
-		}
-		if (test == false) {
-			numbers_array.push_back(atoi(argv[i]));
-		}
-	}
+
+void check_numbers(vector<int> &numbers_array, int argc, char *argv[]) {
+  bool test = false;
+  for (unsigned int i = 1; i < argc; i++) {
+    test = false;
+    for (unsigned int j = 0; j < numbers_array.size(); j++) {
+      if (atoi(argv[i]) == numbers_array[j]) {
+        test = true;
+      }
+    }
+    if (test == false) {
+      int x=atoi(argv[i]);
+      numbers_array.push_back(atoi(argv[i]));
+    }
+  }
 }
-void print_menu() {
-	cout << "1: show tree" << endl;
-	cout << "2: show list of tree" << endl;
-	cout << "3: add node in tree" << endl;
-	cout << "4: delete node of tree" << endl;
-	cout << "5: save tree in file" << endl;
-	cout << "6: load tree from file" << endl;
-	cout << "7: search" << endl;
-	cout << "8: finish programm" << endl;
-}
+  void print_menu() {
+    cout << "1: show tree" << endl;
+    cout << "2: show list of tree" << endl;
+    cout << "3: add node in tree" << endl;
+    cout << "4: delete node of tree" << endl;
+    cout << "5: save tree in file" << endl;
+    cout << "6: load tree from file" << endl;
+    cout << "7: search" << endl;
+    cout << "8: finish programm" << endl;
+  }
 
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
 	vector<int> numbers_array;
 	Tree tree;
 
 	check_numbers(numbers_array, argc, argv);
 	if (numbers_array.size() > 0) {
-		for(unsigned int i = 0; i < numbers_array.size(); i++)
-			tree.insert(tree.getRoot(),numbers_array[i]);
+		for(unsigned int i=0; i<numbers_array.size(); i++) {
+			tree.add_to_tree(numbers_array[i]);
+		}
 	}
-
 	int choice = 0;
 	while (true) {
 		print_menu();
 		cin >> choice;
 		switch (choice) {
 			case 1:
-				if (tree.empty() == true)
-					tree.show_tree(tree.getRoot(),1);
-				else
-					cout << "Tree is empty" << endl;
+				tree.empty();
 				break;
 			case 2:
 				break;
