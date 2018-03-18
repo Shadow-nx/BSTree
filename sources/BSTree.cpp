@@ -10,6 +10,14 @@ Tree::Tree() {
 Node*& Tree::getRoot() {
 	return root;
 }
+
+auto Tree::empty() -> bool{
+	if (root == nullptr)
+		return false;
+	else
+		return true;
+}
+
 auto Tree::show_tree(Node* root,int stage)->void {
 	if(root->left != nullptr)
 		show_tree(root->left,stage+1);
@@ -21,6 +29,7 @@ auto Tree::show_tree(Node* root,int stage)->void {
 	if(root->right!=nullptr)
 		show_tree(root->right,stage+1);
 }
+
 auto Tree::insert(Node*& root,int value) -> bool {
 	if (root == nullptr) {
 		root = new Node{value, nullptr, nullptr};
@@ -51,6 +60,7 @@ auto Tree::insert(Node*& root,int value) -> bool {
 	}
 	return true;
 }
+
 auto Tree::delete_tree(Node *&node) -> void {
 	if(node!=nullptr) {
 		delete_tree(node->left);
@@ -59,6 +69,7 @@ auto Tree::delete_tree(Node *&node) -> void {
 		node=nullptr;
 	}
 }
+
 Tree::~Tree() {
 	delete_tree(root);
 }
