@@ -12,6 +12,7 @@ namespace BSTree {
 		public:
 			Tree();
 			auto getRoot()->Node*&;
+		        auto empty()->bool;
 			auto show_tree(Node* root,int stage)->void;
 			auto insert(Node*& root,int value)-> bool;
 			~Tree();
