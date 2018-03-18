@@ -1,62 +1,71 @@
 #include <iostream>
+#include <vector>
 #include "BSTree.hpp"
 
-using namespace BSTree;
 using namespace std;
+using namespace BSTree;
 
-Tree::Tree() {
-	root = nullptr;
-}
 
-auto Tree::show_tree(Node* root,int stage)->void {
-	if(root->left != nullptr)
-		show_tree(root->left,stage+1);
-	if(root!=this->root) {
-		cout.width(stage*4);
-		cout<<"--";
-	}
-	cout<<"("<< root->data <<")"<< endl;
-	if(root->right!=nullptr)
-		show_tree(root->right,stage+1);
-}
-
-auto Tree::empty() -> bool{
-	if (root == nullptr)
-		cout << "Tree is empty";
-	else
-		show_tree(root, 1);
-}
-
-auto Tree::insert(Node*& root,Node*& parent,int value) -> Node* {
-	if (root == nullptr) {
-	root = new Node{value,nullptr,nullptr,nullptr};
-	if(root!=this->root)
-		root->parent=parent;
-	}
-	else{
-		if(root->data > value){
-			root->left=insert(root->left,root,value);
+void check_numbers(vector<int>& numbers_array, int argc, char* argv[]) {
+	bool test = false;
+	for (unsigned int i = 1; i < argc; i++) {
+		test = false;
+		for (unsigned int j = 0; j < numbers_array.size(); j++) {
+			if (atoi(argv[i]) == numbers_array[j]) {
+				test = true;
+			}
 		}
-		else if(root->data < value){
-			root->right=insert(root->right,root,value);
+		if (test == false) {
+			numbers_array.push_back(atoi(argv[i]));
 		}
 	}
-	return root;
+}
+void print_menu() {
+	cout << "1: show tree" << endl;
+	cout << "2: show list of tree" << endl;
+	cout << "3: add node in tree" << endl;
+	cout << "4: delete node of tree" << endl;
+	cout << "5: save tree in file" << endl;
+	cout << "6: load tree from file" << endl;
+	cout << "7: search" << endl;
+	cout << "8: finish programm" << endl;
 }
 
-auto Tree::add_to_tree(int value)->bool{
-	insert(root,root,value);
-}
 
-auto Tree::delete_tree(Node *&node) -> void {
-	if(node!=nullptr) {
-		delete_tree(node->left);
-		delete_tree(node->right);
-		delete node;
-		node=nullptr;
+int main(int argc, char* argv[]) {
+	vector<int> numbers_array;
+	Tree tree;
+
+	check_numbers(numbers_array, argc, argv);
+	if (numbers_array.size() > 0) {
+		for(unsigned int i = 0; i < numbers_array.size(); i++)
+			tree.add_to_tree(numbers_array[i]);
 	}
-}
 
-Tree::~Tree() {
-	delete_tree(root);
+	int choice = 0;
+	while (true) {
+		print_menu();
+		cin >> choice;
+		switch (choice) {
+			case 1:
+				tree.empty();
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			case 7:
+				break;
+			case 8:
+				return 0;
+		}
+	}
+
+	return 0;
 }
