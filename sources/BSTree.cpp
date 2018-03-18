@@ -30,35 +30,25 @@ auto Tree::show_tree(Node* root,int stage)->void {
 		show_tree(root->right,stage+1);
 }
 
-auto Tree::insert(Node*& root,int value) -> bool {
+auto Tree::insert(Node*& root,Node*& parent,int value) -> Node* {
 	if (root == nullptr) {
-		root = new Node{value, nullptr, nullptr};
+	root = new Node{value,nullptr,nullptr,nullptr};
+	if(root!=this->root)
+		root->parent=parent;
 	}
+	else{
+		if(root->data > value){
+			root->left=insert(root->left,root,value);
+		}
+		else if(root->data < value){
+			root->right=insert(root->right,root,value);
+		}
+	}
+	return root;
+}
 
-	Node* current = root;
-	Node* previous = root;
-	while (current != nullptr) {
-		if (current->data > value) {
-			current = current->left;
-		}
-		else if (current->data < value){
-			current = current->right;
-		}
-		else {
-			return false;
-		}
-		if (current != nullptr) {
-			previous = current;	
-		}
-	}
-
-	if (previous->data > value) {
-		previous->left = new Node{value, nullptr, nullptr};
-	}
-	else {
-		previous->right = new Node{value, nullptr, nullptr};
-	}
-	return true;
+auto Tree::add_to_tree(int value)->bool{
+	insert(root,root,value);
 }
 
 auto Tree::delete_tree(Node *&node) -> void {
