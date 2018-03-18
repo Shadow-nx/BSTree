@@ -7,16 +7,6 @@ using namespace std;
 Tree::Tree() {
 	root = nullptr;
 }
-Node*& Tree::getRoot() {
-	return root;
-}
-
-auto Tree::empty() -> bool{
-	if (root == nullptr)
-		return false;
-	else
-		return true;
-}
 
 auto Tree::show_tree(Node* root,int stage)->void {
 	if(root->left != nullptr)
@@ -28,6 +18,13 @@ auto Tree::show_tree(Node* root,int stage)->void {
 	cout<<"("<< root->data <<")"<< endl;
 	if(root->right!=nullptr)
 		show_tree(root->right,stage+1);
+}
+
+auto Tree::empty() -> bool{
+	if (root == nullptr)
+		cout << "Tree is empty";
+	else
+		show_tree(root, 1);
 }
 
 auto Tree::insert(Node*& root,Node*& parent,int value) -> Node* {
