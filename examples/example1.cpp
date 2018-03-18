@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
 		cin >> choice;
 		switch (choice) {
 			case 1:
-				if (tree.empty()==true)
+				if (tree.empty() == true)
 					tree.show_tree(tree.getRoot(),1);
 				else
 					cout << "Tree is empty" << endl;
