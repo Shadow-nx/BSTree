@@ -21,9 +21,7 @@ auto Tree::show_tree(Node* root,int stage) -> void {
 }
 
 auto Tree::empty() -> bool {
-	if (root == nullptr)
-		cout << "Tree is empty";
-	else
+	if (root != nullptr)
 		show_tree(root, 1);
 }
 
