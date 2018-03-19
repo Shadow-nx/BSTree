@@ -48,7 +48,8 @@ int main(int argc, char* argv[]) {
 		cin >> choice;
 		switch (choice) {
 			case 1:
-				tree.empty();
+				if(tree.empty()==nullptr)
+					cout<<"tree empty"<<endl;
 				break;
 			case 2:
 				break;
