@@ -21,8 +21,9 @@ auto Tree::show_tree(Node* root,int stage) -> void {
 }
 
 auto Tree::empty() -> bool {
-	if (root != nullptr)
-		show_tree(root, 1);
+	if (root == nullptr)
+		return true;
+	show_tree(root, 1);
 }
 
 auto Tree::insert(Node*& root,Node*& parent,int value) -> Node* {
