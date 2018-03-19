@@ -8,7 +8,7 @@ namespace BSTree {
 	class Tree {
 		private:
 			Node* root;
-			auto delete_tree(Node *&node) ->void;
+			auto delete_tree(Node *&node) -> void;
 		public:
 			Tree();
 		   	auto empty() -> bool;
