@@ -4,9 +4,7 @@
 using namespace BSTree;
 using namespace std;
 
-Tree::Tree() {
-	root = nullptr;
-}
+Tree::Tree(): root(nullptr){};
 
 auto Tree::show_tree(Node* root,int stage) -> void {
 	if (root->left != nullptr)
