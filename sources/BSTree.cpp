@@ -6,6 +6,10 @@ using namespace std;
 
 Tree::Tree(): root(nullptr){};
 
+auto Tree::get_root() -> Node*{
+	return root;
+}
+
 auto Tree::show_tree(Node* root,int stage) -> void {
 	if (root->left != nullptr)
 		show_tree(root->left, stage + 1);
@@ -31,10 +35,10 @@ auto Tree::insert(Node*& root,Node*& parent,int value) -> Node* {
 		root->parent = parent;
 	}
 	else {
-		if (root->data > value){
+		if (root->data < value){
 			root->left = insert(root->left, root, value);
 		}
-		else if (root->data < value){
+		else if (root->data > value){
 			root->right = insert(root->right, root, value);
 		}
 	}
@@ -43,6 +47,30 @@ auto Tree::insert(Node*& root,Node*& parent,int value) -> Node* {
 
 auto Tree::add_to_tree(int value) -> bool {
 	insert(root, root, value);
+}
+
+auto Tree::direct_bypass(Node* root) -> void {
+	if (root != nullptr) {
+		cout << root->data << " ";
+		direct_bypass(root->right);
+		direct_bypass(root->left);
+	}
+}
+
+auto Tree::symmetric_bypass(Node* root) -> void {
+	if (root != nullptr){
+		symmetric_bypass(root->right);
+		cout << root->data << "   ";
+		symmetric_bypass(root->left);
+	}
+}
+
+auto Tree::back_bypass(Node* root) -> void {
+	if (root != nullptr){
+		back_bypass(root->left);
+		back_bypass(root->right);
+		cout << root->data << "   ";
+	}
 }
 
 auto Tree::delete_tree(Node *&node) -> void {
