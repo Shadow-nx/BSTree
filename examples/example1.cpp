@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "BSTree.hpp"
-#include <string>
+#include "bstree.hpp"
 
 using namespace std;
 using namespace BSTree;
@@ -31,32 +30,31 @@ void print_menu() {
 	cout << "6: load tree from file" << endl;
 	cout << "7: search" << endl;
 	cout << "8: finish programm" << endl;
+	cout << endl;
 }
 
-void show_list_of_tree(Tree tree) {
+void show_list_of_tree(Tree& tree){
 	cout << "a.direct bypass" << endl;
 	cout << "b.symmetric bypass" << endl;
 	cout << "c.back bypass" << endl;
 	char ch;
 	while (true) {
 		cin >> ch;
-		switch (ch) {
-			case 'a':
-				tree.direct_bypass(tree.get_root());
-				cout << endl;
-				cin.clear();
-				return;
-			case 'b':
-				tree.symmetric_bypass(tree.get_root());
-				cout << endl;
-				cin.clear();
-				return;
-			case 'c':
-				tree.back_bypass(tree.get_root());
-				cout << endl;
-				cin.clear();
-				return;
-		}
+		cout << "1" << endl;
+			switch (ch) {
+				case 'a':
+					tree.version_bypass(Tree::direct);
+					cout << endl;
+					return;
+				case 'b':
+					tree.version_bypass(Tree::symmetric);
+					cout << endl;
+					return;
+				case 'c':
+					tree.version_bypass(Tree::back);
+					cout << endl;
+					return;
+			}
 	}
 }
 
@@ -80,7 +78,7 @@ int main(int argc, char* argv[]) {
 	check_numbers(numbers_array, argc, argv);
 	if (numbers_array.size() > 0) {
 		for(unsigned int i = 0; i < numbers_array.size(); i++)
-			tree.add_to_tree(numbers_array[i]);
+			tree.insert(numbers_array[i]);
 	}
 
 	int choice = 0;
@@ -89,7 +87,9 @@ int main(int argc, char* argv[]) {
 		cin >> choice;
 		switch (choice) {
 			case 1:
-				if (tree.empty() == true)
+				if (! tree.empty())
+					tree.show();
+				else
 					cout << "Tree is empty" << endl;
 				break;
 			case 2:
@@ -106,7 +106,7 @@ int main(int argc, char* argv[]) {
 			case 7:
 				break;
 			case 8:
-				if (finish_program() == true){
+				if (finish_program()){
 					tree.~Tree();
 					return 0;
 				}
