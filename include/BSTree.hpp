@@ -8,17 +8,19 @@ namespace BSTree {
 	class Tree {
 		private:
 			Node* root;
-			auto delete_tree(Node *&node) -> void;
-		public:
-			Tree();
-			auto get_root() -> Node*;
-		   	auto empty() -> bool;
-			auto show_tree(Node* root,int stage) -> void;
 			auto insert(Node*& root,Node*& parent,int value) -> Node*;
-			auto add_to_tree(int value) -> bool;
-			auto direct_bypass(Node* root) -> void;
-			auto symmetric_bypass(Node* root) -> void;
-			auto back_bypass(Node* root) -> void;
+			auto show(Node* root,int stage) const -> void;
+			auto delete_tree(Node *&node) -> void;
+			auto direct_bypass(Node* root) const -> void;
+			auto symmetric_bypass(Node* root) const -> void;
+			auto back_bypass(Node* root) const -> void;
+		public:
+			enum order{direct, symmetric, back};
+			Tree();
+		   	auto empty() const -> bool;
+			auto show() const -> void;
+			auto insert(int value) -> bool;
+			auto version_bypass(order) const -> void;
 			~Tree();
 	};
 }
