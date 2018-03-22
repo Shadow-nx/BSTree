@@ -1,31 +1,33 @@
 #include <iostream>
-#include "BSTree.hpp"
+#include <string>
+#include "bstree.hpp"
 
 using namespace BSTree;
 using namespace std;
 
 Tree::Tree(): root(nullptr){};
 
-auto Tree::get_root() -> Node*{
-	return root;
+auto Tree::empty() const -> bool {
+	if (root == nullptr)
+		return true;
+	else
+		return false;
 }
 
-auto Tree::show_tree(Node* root,int stage) -> void {
+auto Tree::show(Node* root,int stage) const -> void {
 	if (root->left != nullptr)
-		show_tree(root->left, stage + 1);
+		show(root->left, stage + 1);
 	if (root != this->root) {
 		cout.width(stage * 4);
 		cout << "--";
 	}
 	cout << "(" << root->data << ")" << endl;
 	if (root->right != nullptr)
-		show_tree(root->right, stage + 1);
+		show(root->right, stage + 1);
 }
 
-auto Tree::empty() -> bool {
-	if (root == nullptr)
-		return true;
-	show_tree(root, 1);
+auto Tree::show() const -> void {
+	show(root, 1);
 }
 
 auto Tree::insert(Node*& root,Node*& parent,int value) -> Node* {
@@ -45,11 +47,11 @@ auto Tree::insert(Node*& root,Node*& parent,int value) -> Node* {
 	return root;
 }
 
-auto Tree::add_to_tree(int value) -> bool {
+auto Tree::insert(int value) -> bool {
 	insert(root, root, value);
 }
 
-auto Tree::direct_bypass(Node* root) -> void {
+auto Tree::direct_bypass(Node* root) const -> void {
 	if (root != nullptr) {
 		cout << root->data << " ";
 		direct_bypass(root->right);
@@ -57,22 +59,36 @@ auto Tree::direct_bypass(Node* root) -> void {
 	}
 }
 
-auto Tree::symmetric_bypass(Node* root) -> void {
+auto Tree::symmetric_bypass(Node* root) const -> void {
 	if (root != nullptr){
 		symmetric_bypass(root->right);
-		cout << root->data << "   ";
+		cout << root->data << " ";
 		symmetric_bypass(root->left);
 	}
+	return;
 }
 
-auto Tree::back_bypass(Node* root) -> void {
+auto Tree::back_bypass(Node* root) const -> void {
 	if (root != nullptr){
 		back_bypass(root->left);
 		back_bypass(root->right);
-		cout << root->data << "   ";
+		cout << root->data << " ";
 	}
 }
 
+auto Tree::version_bypass(order ch) const -> void {
+	switch (ch) {
+			case direct:
+				direct_bypass(root);
+				break;
+			case symmetric:
+				symmetric_bypass(root);
+				break;
+			case back:
+				back_bypass(root);
+				break;
+	}
+}
 auto Tree::delete_tree(Node *&node) -> void {
 	if(node != nullptr) {
 		delete_tree(node->left);
