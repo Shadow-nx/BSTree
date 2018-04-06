@@ -129,14 +129,24 @@ void Tree::delete_node(Node *&root, int value)
 	 			current=current->right;
 	 		}else if((value > current->data) && (current->left != nullptr)){
 	 			current = current->left;
-	 		}else if(current->data == value)
+	 		}else if((value < current->data) && (current->right == nullptr)){
+                    cout<<"element not have"<<endl;
+	 				return;
+	 		}else if((value > current->data) && (current->left == nullptr)){
+                    cout<<"element not have"<<endl;
+	 				return;
+	 		}
+	 		else if(current->data == value){
 	 			break;
+	 		}
 	 	}
 		Node* left = nullptr;
 		Node* right = nullptr;
 	 	if(current == root){
-	 		root = current->right;
-	 		insert(root, root, current->left);
+	 		left=current->left;
+	 		right=current->right;
+	 		root = left;
+	 		insert(root, root, right);
 	 		delete current;
 	 	}else{
 	 		if((current->right != nullptr) && (current->left==nullptr)){
