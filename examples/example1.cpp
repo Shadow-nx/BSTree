@@ -85,6 +85,7 @@ int main(int argc, char* argv[]) {
 	while (true) {
 		print_menu();
 		cin >> choice;
+		int value;
 		switch (choice) {
 			case 1:
 				if (! tree.empty())
@@ -96,8 +97,14 @@ int main(int argc, char* argv[]) {
 				show_list_of_tree(tree);
 				break;
 			case 3:
+			    cout<<"input value for insert"<<endl;
+			    cin>>value;
+			    tree.insert(value);
 				break;
 			case 4:
+			    cout<<"input delete value"<<endl;
+			    cin>>value;
+			    tree.delete_node(value);
 				break;
 			case 5:
 				break;
