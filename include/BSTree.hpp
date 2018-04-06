@@ -15,7 +15,7 @@ namespace BSTree {
 			auto direct_bypass(Node* root) const -> void;
 			auto symmetric_bypass(Node* root) const -> void;
 			auto back_bypass(Node* root) const -> void;
-			auto delete_node(Node *&root,int value) -> void;
+			auto delete_node(Node *&root, int value) -> void;
 		public:
 			enum order{direct, symmetric, back};
 			Tree();
