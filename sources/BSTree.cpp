@@ -42,6 +42,25 @@ auto Tree::insert(Node*& root,Node*& parent,int value) -> Node* {
 		}
 		else if (root->data > value){
 			root->right = insert(root->right, root, value);
+		} else if(root -> data == value){
+			cout<<"tree is have this node"<<endl;
+			return root;
+		}
+	}
+	return root;
+}
+auto Tree::insert(Node*& root,Node*& parent,Node*& value) -> Node* {
+	if (root == nullptr) {
+	root = value;
+	if(root != this->root)
+		root->parent = parent;
+	}
+	else {
+		if (root->data < value->data){
+			root->left = insert(root->left, root, value);
+		}
+		else if (root->data > value->data){
+			root->right = insert(root->right, root, value);
 		}
 	}
 	return root;
@@ -97,7 +116,67 @@ auto Tree::delete_tree(Node *&node) -> void {
 		node = nullptr;
 	}
 }
-
+void Tree::delete_node(Node *&root,int value)
+{
+	if(!root)
+	 {
+	 	cout<<"tree is empty"<<endl;
+	    return;
+	 }else if(root){
+	 Node *current=root;	
+	 	while(current->data!=value){
+	 		if(value < current->data && current->right!=nullptr){
+	 			current=current->right;
+	 		}else if(value > current->data && current->left!=nullptr){
+	 			current=current->left;
+	 		}else if(current->data==value)
+	 		   break;
+	 	}
+	 	Node* left=nullptr;
+	 	Node* right=nullptr;
+	 	if(current==root){
+	 		root=current->right;
+	 		insert(root,root,current->left);
+	 		delete current;
+	 	}else{
+	 		if(current->right!=nullptr && current->left==nullptr){
+	 			if(current==current->parent->left)
+	 		   current->parent->left=nullptr;
+	 		  else
+	 		   current->parent->right=nullptr;
+	 			right=current->right;
+	 			insert(root,root,right);
+	 		}
+	 		else if(current->left!=nullptr && current->right==nullptr){
+	 		  if(current==current->parent->left)
+	 		   current->parent->left=nullptr;
+	 		  else
+	 		   current->parent->right=nullptr;
+	 			left=current->left;
+	 			insert(root,root,left);
+	 		}
+	 	    else if(current->right != nullptr && current->left!=nullptr){
+	 	    	left=current->left;
+	 	    	right=current->right;
+	 	    	if(current==current->parent->left)
+	 	    	 current->parent->left=nullptr;
+	 	    	 else
+	 	    	 current->parent->right=nullptr;
+                insert(root,root,left);
+                insert(root,root,right);
+	 	    }else{
+	 	    	if(current==current->parent->left)
+	 	    	  current->parent->left=nullptr;
+	 	    	if(current==current->parent->right)
+	 	    	  current->parent->right=nullptr;
+	 	    }
+	       delete current;
+	 	}
+	 }
+}
+void Tree::delete_node(int value){
+	delete_node(root,value);
+}
 Tree::~Tree() {
 	delete_tree(root);
 }
