@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "bstree.hpp"
 
 using namespace BSTree;
@@ -14,7 +15,7 @@ auto Tree::empty() const -> bool {
 		return false;
 }
 
-auto Tree::show(Node* root, int stage) const -> void {
+auto Tree::show(Node* root,int stage) const -> void {
 	if (root->left != nullptr)
 		show(root->left, stage + 1);
 	if (root != this->root) {
@@ -30,7 +31,7 @@ auto Tree::show() const -> void {
 	show(root, 1);
 }
 
-auto Tree::insert(Node*& root, Node*& parent, int value) -> Node* {
+auto Tree::insert(Node*& root,Node*& parent,int value) -> Node* {
 	if (root == nullptr) {
 	root = new Node{value,nullptr,nullptr,nullptr};
 	if(root != this->root)
@@ -49,7 +50,7 @@ auto Tree::insert(Node*& root, Node*& parent, int value) -> Node* {
 	}
 	return root;
 }
-auto Tree::insert(Node*& root, Node*& parent, Node*& value) -> Node* {
+auto Tree::insert(Node*& root,Node*& parent,Node*& value) -> Node* {
 	if (root == nullptr) {
 	root = value;
 	if(root != this->root)
@@ -77,7 +78,13 @@ auto Tree::direct_bypass(Node* root) const -> void {
 		direct_bypass(root->left);
 	}
 }
-
+auto Tree::direct_bypass(Node* root, ofstream &fout) const -> void {
+	if (root != nullptr) {
+		fout << root->data << " ";
+		direct_bypass(root->right,fout);
+		direct_bypass(root->left,fout);
+	}
+}
 auto Tree::symmetric_bypass(Node* root) const -> void {
 	if (root != nullptr){
 		symmetric_bypass(root->right);
@@ -116,76 +123,74 @@ auto Tree::delete_tree(Node *&node) -> void {
 		node = nullptr;
 	}
 }
-void Tree::delete_node(Node *&root, int value)
+void Tree::delete_node(Node *&root,int value)
 {
 	if(!root)
-	{
-		cout << "Tree is empty" << endl;
-		return;
-	}else if(root){
-		Node *current = root;	
-		while(current->data != value){
-	 		if ((value < current->data) && (current->right != nullptr)){
+	 {
+	 	cout<<"tree is empty"<<endl;
+	    return;
+	 }else if(root){
+	 Node *current=root;	
+	 	while(current->data!=value){
+	 		if(value < current->data && current->right!=nullptr){
 	 			current=current->right;
-	 		}else if((value > current->data) && (current->left != nullptr)){
-	 			current = current->left;
-	 		}else if((value < current->data) && (current->right == nullptr)){
-                    cout<<"element not have"<<endl;
-	 				return;
-	 		}else if((value > current->data) && (current->left == nullptr)){
-                    cout<<"element not have"<<endl;
-	 				return;
-	 		}
-	 		else if(current->data == value){
-	 			break;
-	 		}
+	 		}else if(value > current->data && current->left!=nullptr){
+	 			current=current->left;
+	 		}else if(current->data==value)
+	 		   break;
 	 	}
-		Node* left = nullptr;
-		Node* right = nullptr;
-	 	if(current == root){
-	 		left=current->left;
-	 		right=current->right;
-	 		root = left;
-	 		insert(root, root, right);
+	 	Node* left=nullptr;
+	 	Node* right=nullptr;
+	 	if(current==root){
+	 		root=current->right;
+	 		insert(root,root,current->left);
 	 		delete current;
 	 	}else{
-	 		if((current->right != nullptr) && (current->left==nullptr)){
-	 			if(current == current->parent->left)
-	 		   		current->parent->left = nullptr;
-	 		  	else
-	 		   		current->parent->right = nullptr;
-	 			right = current->right;
-	 			insert(root, root, right);
+	 		if(current->right!=nullptr && current->left==nullptr){
+	 			if(current==current->parent->left)
+	 		   current->parent->left=nullptr;
+	 		  else
+	 		   current->parent->right=nullptr;
+	 			right=current->right;
+	 			insert(root,root,right);
 	 		}
-	 		else if((current->left != nullptr) && (current->right == nullptr)){
-	 			if(current == current->parent->left)
-	 				current->parent->left = nullptr;
-	 		  	else
-	 		   		current->parent->right = nullptr;
-	 			left = current->left;
-	 			insert(root, root, left);
+	 		else if(current->left!=nullptr && current->right==nullptr){
+	 		  if(current==current->parent->left)
+	 		   current->parent->left=nullptr;
+	 		  else
+	 		   current->parent->right=nullptr;
+	 			left=current->left;
+	 			insert(root,root,left);
 	 		}
-	 	    else if((current->right != nullptr) && (current->left != nullptr)){
-	 	    	left = current->left;
-	 	    	right = current->right;
-	 	    	if(current == current->parent->left)
-	 	    		current->parent->left = nullptr;
-	 	    	else
-	 	    		current->parent->right = nullptr;
-                insert(root, root, left);
-                insert(root, root, right);
+	 	    else if(current->right != nullptr && current->left!=nullptr){
+	 	    	left=current->left;
+	 	    	right=current->right;
+	 	    	if(current==current->parent->left)
+	 	    	 current->parent->left=nullptr;
+	 	    	 else
+	 	    	 current->parent->right=nullptr;
+                insert(root,root,left);
+                insert(root,root,right);
 	 	    }else{
-	 	    	if(current == current->parent->left)
-	 	    		current->parent->left = nullptr;
-	 	    	if(current == current->parent->right)
-	 	    		current->parent->right = nullptr;
+	 	    	if(current==current->parent->left)
+	 	    	  current->parent->left=nullptr;
+	 	    	if(current==current->parent->right)
+	 	    	  current->parent->right=nullptr;
 	 	    }
-	 	    delete current;
+	       delete current;
 	 	}
-	}
+	 }
+}
+auto Tree::save_to_file() -> void 
+{   
+    string filename;
+    cin>>filename;
+    ofstream fout(filename.c_str());
+    direct_bypass(root,fout);
+
 }
 void Tree::delete_node(int value){
-	delete_node(root, value);
+	delete_node(root,value);
 }
 Tree::~Tree() {
 	delete_tree(root);
