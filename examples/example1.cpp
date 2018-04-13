@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 #include "bstree.hpp"
 
 using namespace std;
@@ -97,16 +98,17 @@ int main(int argc, char* argv[]) {
 				show_list_of_tree(tree);
 				break;
 			case 3:
-				cout << "input value for insert"<<endl;
-				cin >> value;
-				tree.insert(value);
+			    cout<<"input value for insert"<<endl;
+			    cin>>value;
+			    tree.insert(value);
 				break;
 			case 4:
-				cout << "input delete value" << endl;
-				cin >> value;
-				tree.delete_node(value);
+			    cout<<"input delete value"<<endl;
+			    cin>>value;
+			    tree.delete_node(value);
 				break;
 			case 5:
+			    tree.save_to_file();
 				break;
 			case 6:
 				break;
