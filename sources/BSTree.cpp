@@ -189,6 +189,24 @@ auto Tree::save_to_file() -> void
     direct_bypass(root,fout);
 
 }
+auto Tree::load_from_file()-> void
+{
+	string road_to_file;
+	cout << "please enter road to file" << endl;
+	cin >> road_to_file;
+	ifstream fin(road_to_file.c_str());
+	if (!fin.is_open()) {
+		cout << "file cant open";
+		return;
+	}
+	if(root){
+	  delete_tree(root);	
+	}
+	int value;
+	while(fin>>value){
+	  insert(value);
+	}
+}
 void Tree::delete_node(int value){
 	delete_node(root,value);
 }
