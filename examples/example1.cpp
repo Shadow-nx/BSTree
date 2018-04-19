@@ -111,6 +111,7 @@ int main(int argc, char* argv[]) {
 			    tree.save_to_file();
 				break;
 			case 6:
+			    tree.load_from_file();
 				break;
 			case 7:
 				break;
