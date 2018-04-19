@@ -184,9 +184,10 @@ void Tree::delete_node(Node *&root,int value)
 auto Tree::save_to_file() -> void 
 {   
     string filename;
-    cin>>filename;
+    cout << "enter name of file" << endl;
+    cin >> filename;
     ofstream fout(filename.c_str());
-    direct_bypass(root,fout);
+    direct_bypass(root, fout);
 
 }
 auto Tree::load_from_file()-> void
@@ -196,19 +197,19 @@ auto Tree::load_from_file()-> void
 	cin >> road_to_file;
 	ifstream fin(road_to_file.c_str());
 	if (!fin.is_open()) {
-		cout << "file cant open";
+		cout << "file can`t open" << endl;
 		return;
 	}
 	if(root){
-	  delete_tree(root);	
+		delete_tree(root);	
 	}
 	int value;
-	while(fin>>value){
-	  insert(value);
+	while(fin >> value){
+		insert(value);
 	}
 }
 void Tree::delete_node(int value){
-	delete_node(root,value);
+	delete_node(root, value);
 }
 Tree::~Tree() {
 	delete_tree(root);
