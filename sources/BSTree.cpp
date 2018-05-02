@@ -3,7 +3,7 @@
 #include <fstream>
 #include <initializer_list>
 #include <vector>
-#include "bstree.hpp"
+#include "BSTree.hpp"
 
 using namespace BSTree;
 using namespace std;
