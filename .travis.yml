@@ -70,4 +70,4 @@ before_script:
   - $CXX --version
   - cd ${TRAVIS_BUILD_DIR}
 script:
-- g++ example1.cpp BSTree.cpp -I. -std=c++11 -o queue-example
+- g++ examples/example1.cpp sources/BSTree.cpp -I. -std=c++11 -o queue-example
