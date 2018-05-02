@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include "bstree.hpp"
+#include "BSTree.hpp"
 
 using namespace BSTree;
 using namespace std;
