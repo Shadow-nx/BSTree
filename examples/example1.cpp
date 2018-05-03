@@ -95,34 +95,34 @@ int main(int argc, char* argv[]) {
 		string road;
 		switch (choice) {
 			case 1:
-				cout<<tree<<endl;
+				cout << tree << endl;
 				break;
 			case 2:
 				show_list_of_tree(tree);
 				break;
 			case 3:
-				cout<<"input value for insert"<<endl;
-				cin>>value;
+				cout << "input value for insert" << endl;
+				cin >> value;
 				tree.insert(value);
 				break;
 			case 4:
-				cout<<"input delete value"<<endl;
-				cin>>value;
+				cout << "input delete value" << endl;
+				cin >> value;
 				tree.delete_node(value);
 				break;
 			case 5:
 				cout << "please enter filename" << endl;
-				cin>>road;
+				cin >> road;
 				tree.save_to_file(road);
 				break;
 			case 6:
 				cout << "please enter road to file" << endl;
-				cin>>road;
+				cin >> road;
 				tree.load_from_file(road);
 				break;
 			case 7:
 				cout << "please enter the item to search for" << endl;
-				cin>>value;
+				cin >> value;
 				tree.exists(value);
 				break;
 			case 8:
